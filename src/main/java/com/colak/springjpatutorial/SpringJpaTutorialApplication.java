@@ -18,9 +18,19 @@ public class SpringJpaTutorialApplication implements CommandLineRunner {
         SpringApplication.run(SpringJpaTutorialApplication.class, args);
     }
 
+    // Logs are
+    // Name:dataSource, Connection:4, Time:0, Success:True
+    // Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+    // Query:["select p1_0.id,p1_0.name from person p1_0 where p1_0.id=?"]
+    // Params:[(1)]
+
+    // Name:dataSource, Connection:4, Time:1, Success:True
+    // Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+    // Query:["insert into person (name,id) values (?,?)"]
+    // Params:[(person-name,1)]
     @Override
     public void run(String... args) {
-        Person person = new Person(1L, "person1");
+        Person person = new Person(1L, "person-name");
 
         Person savedPerson = personService.save(person);
         log.info("savedPerson : {}", savedPerson);
